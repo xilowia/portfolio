@@ -1,0 +1,62 @@
+<html>
+    <style>
+        button {
+            background-color: aqua;
+        }
+    </style>
+    <button onclick="weergeefVragen()">Begin de quiz</button>
+    <script>
+        const vraag1 = {
+            vraagtekst: "welke kleur is een wortel?",
+            antwoorden: ["geel", "rood", "oranje", "blauw"],
+            goedantwoord: 3
+        };
+
+        const vraag2 = {
+            vraagtekst: "maak het spreekwoord af: de appel valt niet ver van de...",
+            antwoorden: ["tafel", "boom", "mand", "maan"],
+            goedantwoord: 2
+        };
+
+        const vraag3 = {
+            vraagtekst: "wat is de voornaam van Obama?",
+            antwoorden: ["Trump", "Aryan", "Beer", "Barack"],
+            goedantwoord: 4
+        };
+
+
+        const vraagArray = [vraag1, vraag2, vraag3];
+
+        function weergeefVragen() {
+            var score = 0;
+
+            for (var i = 0; i < vraagArray.length; i++) {
+                var vraag = vraagArray[i];
+                var antwoordPrompt = "Geef het nummer van je antwoord:\n";
+
+                for (var j = 0; j < vraag.antwoorden.length; j++) {
+                    antwoordPrompt += (j + 1) + ". " + vraag.antwoorden[j] + "\n";
+                }
+
+                var gebruikerAntwoord = parseInt(prompt(vraag.vraagtekst + "\n\n" + antwoordPrompt));
+
+                if (gebruikerAntwoord === vraag.goedantwoord) {
+                    score++;
+                    alert("Goed!");
+                } else {
+                    alert("Fout. Het juiste antwoord is: " + vraag.antwoorden[vraag.goedantwoord - 1]);
+                }
+            }
+
+            geefFeedback(score);
+        }
+
+        function geefFeedback(score) {
+            alert("Je hebt " + score + " vragen van de " + vraagArray.length + " goed.");
+
+            if (score === vraagArray.length) {
+                alert("Gefeliciteerd! Je hebt alle vragen goed beantwoord.");
+            }
+        }
+    </script>
+</html>
